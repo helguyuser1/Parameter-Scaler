@@ -4,8 +4,12 @@ from urllib.parse import urlparse
 import fade
 from colorama import Fore, Style
 
-os.system("cls")
-
+def clear():
+    if os.name == 'nt': 
+        os.system('cls')
+    else:  
+        os.system('clear')
+clear()
 text = """
   Termux is bad ~ hellguy
     
