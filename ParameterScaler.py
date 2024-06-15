@@ -1,7 +1,6 @@
 import requests
 import os
 from urllib.parse import urlparse
-import fade
 from colorama import Fore
 
 def clear():
@@ -72,15 +71,16 @@ def save(urls, siteUrl):
 
 clear()
 def printbanner():
-    banner = """
-     __  __________    __    ________  ____  __
-    / / / / ____/ /   / /   / ____/ / / /\ \/ /
-   / /_/ / __/ / /   / /   / / __/ / / /  \  / 
-  / __  / /___/ /___/ /___/ /_/ / /_/ /   / /  
- /_/ /_/_____/_____/_____/\____/\____/   /_/   
-                                                
-        ✸  Tool made BY: Hellguy ! ✸
-    """;print(fade.fire(banner))
+    banner = f"""
+{Fore.LIGHTRED_EX}______                              _               _____           _           
+{Fore.LIGHTBLUE_EX}| ___ \                            | |             /  ___|         | |          
+{Fore.LIGHTYELLOW_EX}| |_/ /_ _ _ __ __ _ _ __ ___   ___| |_ ___ _ __   \ `--.  ___ __ _| | ___ _ __ 
+{Fore.LIGHTGREEN_EX}|  __/ _` | '__/ _` | '_ ` _ \ / _ \ __/ _ \ '__|   `--. \/ __/ _` | |/ _ \ '__|
+{Fore.LIGHTCYAN_EX}| | | (_| | | | (_| | | | | | |  __/ ||  __/ |     /\__/ / (_| (_| | |  __/ |   
+{Fore.LIGHTMAGENTA_EX}\_|  \__,_|_|  \__,_|_| |_| |_|\___|\__\___|_|     \____/ \___\__,_|_|\___|_|
+  
+        {Fore.LIGHTYELLOW_EX}✸  Tool made BY: Hellguy ! ✸
+    """;print(banner)
 printbanner()
 option = input(Fore.RESET+ "[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 clear()
