@@ -82,12 +82,11 @@ def printbanner():
         ✸  Tool made BY: Hellguy ! ✸
     """;print(fade.fire(banner))
 printbanner()
-print(Fore.RESET)
-option = input("[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
+option = input(Fore.RESET+ "[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 clear()
 printbanner()
 if option == "1":
-    siteUrl = input("[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
+    siteUrl = input(Fore.RESET+"[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
     print(Fore.YELLOW+"\n[+] URLs found with parameters:\n", Fore.RESET)
@@ -97,7 +96,7 @@ if option == "1":
     save(urls, siteUrl)
 
 elif option == "2":
-    siteUrl = input("[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
+    siteUrl = input(Fore.RESET+"[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
     print(Fore.YELLOW+"\n[+] URLs Found:\n", Fore.RESET)
