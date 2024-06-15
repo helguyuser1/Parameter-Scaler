@@ -42,9 +42,9 @@ def find(siteUrl):
             for line in lines:
                 foundUrls.add(line)
         else:
-            print(f"[ X ] Error: {r.status_code}")
+            print(f"[X] Error: {r.status_code}")
     except Exception as e:
-        print(f"[ X ] Error: {str(e)}")
+        print(f"[X] Error: {str(e)}")
     return foundUrls
 
 def save(urls, siteUrl):
@@ -66,9 +66,9 @@ def save(urls, siteUrl):
         with open(fileName, 'w') as file:
             for url in urls:
                 file.write(url + '\n')
-        print(f"\n[ * ] URLs saved in > '{fileName}'.")
+        print(f"\n[*] URLs saved in > '{fileName}'.")
     except Exception as e:
-        print(f"[ X ] Error while saving URLs: {str(e)}")
+        print(f"[X] Error while saving URLs: {str(e)}")
 
 clear()
 def printbanner():
@@ -87,20 +87,20 @@ print(Fore.RESET)
 clear()
 printbanner()
 if option == "1":
-    siteUrl = input("[-] Domain (ex: youtube.com)\n:> " + Fore.CYAN)
+    siteUrl = input("[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
-    print(Fore.YELLOW+"\n[ + ] URLs found with parameters:\n", Fore.RESET)
+    print(Fore.YELLOW+"\n[+] URLs found with parameters:\n", Fore.RESET)
     for url in urls:
         if params(url):
             print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
     save(urls, siteUrl)
 
 elif option == "2":
-    siteUrl = input("[-] Domain (ex: youtube.com)\n:> " + Fore.CYAN)
+    siteUrl = input("[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
-    print(Fore.YELLOW+"\n[ + ] URLs Found:\n", Fore.RESET)
+    print(Fore.YELLOW+"\n[+] URLs Found:\n", Fore.RESET)
     for url in urls:
         if params(url):
             print(Fore.RESET + f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
