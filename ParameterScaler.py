@@ -2,7 +2,7 @@ import requests
 import os
 from urllib.parse import urlparse
 import fade
-from colorama import Fore, Style
+from colorama import Fore
 
 def clear():
     if os.name == 'nt': 
@@ -28,16 +28,23 @@ def rmvd(urls):
 def find(siteUrl):
     foundUrls = set()
     try:
-        url = f"https://web.archive.org/cdx/search/cdx?url=*.{siteUrl}/*&output=txt&fl=original&collapse=urlkey&page=/"
-        response = requests.get(url)
-        if response.status_code == 200:
-            lines = response.text.splitlines()
+        userresponse = input(Fore.RESET+"\n[?] Hard Mode (y/n) \n> ")
+        if userresponse == "y":
+            url = f"https://web.archive.org/cdx/search/cdx?url=*.{siteUrl}/*&output=txt&fl=original&collapse=urlkey&page=/"
+        else:
+            url = f"https://web.archive.org/cdx/search/cdx?url={siteUrl}/*&output=txt&fl=original&collapse=urlkey&page=/"
+        clear()
+        printbanner()
+        print(Fore.RESET+F"[!] Searching... (Target: {Fore.YELLOW+siteUrl+Fore.RESET})")
+        r = requests.get(url)
+        if r.status_code == 200:
+            lines = r.text.splitlines()
             for line in lines:
                 foundUrls.add(line)
         else:
-            print(f"[X] Error: {response.status_code}")
+            print(f"[ X ] Error: {r.status_code}")
     except Exception as e:
-        print(f"[X] Error: {str(e)}")
+        print(f"[ X ] Error: {str(e)}")
     return foundUrls
 
 def save(urls, siteUrl):
@@ -59,46 +66,45 @@ def save(urls, siteUrl):
         with open(fileName, 'w') as file:
             for url in urls:
                 file.write(url + '\n')
-        print(f"[*] URLs saved in > '{fileName}'.")
+        print(f"\n[ * ] URLs saved in > '{fileName}'.")
     except Exception as e:
-        print(f"[X] Error while saving URLs: {str(e)}")
+        print(f"[ X ] Error while saving URLs: {str(e)}")
 
 clear()
-banner = """
-    __  __________    __    ________  ____  __
-   / / / / ____/ /   / /   / ____/ / / /\ \/ /
-  / /_/ / __/ / /   / /   / / __/ / / /  \  / 
- / __  / /___/ /___/ /___/ /_/ / /_/ /   / /  
-/_/ /_/_____/_____/_____/\____/\____/   /_/   
-                                              
-    ✸  Tool made BY: Hellguy ! ✸
-""";print(fade.fire(banner))
-
+def printbanner():
+    banner = """
+        __  __________    __    ________  ____  __
+    / / / / ____/ /   / /   / ____/ / / /\ \/ /
+    / /_/ / __/ / /   / /   / / __/ / / /  \  / 
+    / __  / /___/ /___/ /___/ /_/ / /_/ /   / /  
+    /_/ /_/_____/_____/_____/\____/\____/   /_/   
+                                                
+        ✸  Tool made BY: Hellguy ! ✸
+    """;print(fade.fire(banner))
+printbanner()
 option = input("[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 print(Fore.RESET)
+clear()
+printbanner()
 if option == "1":
-    siteUrl = input("URL (https/http)\n:> " + Fore.CYAN)
+    siteUrl = input("[-] Domain (ex: youtube.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
-
-    print("\n[+] URLs found with parameters:\n")
+    print(Fore.YELLOW+"\n[ + ] URLs found with parameters:\n", Fore.RESET)
     for url in urls:
         if params(url):
-            print(Fore.GREEN + url + Fore.RESET)
-
+            print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.CYAN + url + Fore.RESET)
     save(urls, siteUrl)
+
 elif option == "2":
-    siteUrl = input("URL (https/http)\n:> " + Fore.CYAN)
+    siteUrl = input("[-] Domain (ex: youtube.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
-
-    print("\n[+] URLs Found:\n")
+    print(Fore.YELLOW+"\n[ + ] URLs Found:\n", Fore.RESET)
     for url in urls:
         if params(url):
-            print(Fore.BLUE + "[!] Parameter found: " + url + Fore.RESET)
+            print(Fore.RESET + f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.CYAN + url + Fore.RESET)
         else:
-            print(Fore.GREEN + url + Fore.RESET)
-
+            print(Fore.CYAN + url + Fore.RESET)
     save(urls, siteUrl)
-
 exit()
