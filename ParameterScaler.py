@@ -64,7 +64,7 @@ def save(urls, siteUrl):
         print(f"[X] Error while saving URLs: {str(e)}")
 
 clear()
-text = """
+banner = """
     __  __________    __    ________  ____  __
    / / / / ____/ /   / /   / ____/ / / /\ \/ /
   / /_/ / __/ / /   / /   / / __/ / / /  \  / 
@@ -72,10 +72,7 @@ text = """
 /_/ /_/_____/_____/_____/\____/\____/   /_/   
                                               
     ✸  Tool made BY: Hellguy ! ✸
-"""
-
-fadedText = fade.fire(text)
-print(fadedText)
+""";print(fade.fire(banner))
 
 option = input("[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 print(Fore.RESET)
