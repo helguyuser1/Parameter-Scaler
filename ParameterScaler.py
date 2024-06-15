@@ -82,8 +82,8 @@ def printbanner():
         ✸  Tool made BY: Hellguy ! ✸
     """;print(fade.fire(banner))
 printbanner()
-option = input("[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 print(Fore.RESET)
+option = input("[1] - Only Parameters\n[2] - All URLs\n:> " + Fore.CYAN)
 clear()
 printbanner()
 if option == "1":
