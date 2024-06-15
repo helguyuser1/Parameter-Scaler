@@ -93,7 +93,7 @@ if option == "1":
     print(Fore.YELLOW+"\n[ + ] URLs found with parameters:\n", Fore.RESET)
     for url in urls:
         if params(url):
-            print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.CYAN + url + Fore.RESET)
+            print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
     save(urls, siteUrl)
 
 elif option == "2":
@@ -103,7 +103,7 @@ elif option == "2":
     print(Fore.YELLOW+"\n[ + ] URLs Found:\n", Fore.RESET)
     for url in urls:
         if params(url):
-            print(Fore.RESET + f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.CYAN + url + Fore.RESET)
+            print(Fore.RESET + f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
         else:
             print(Fore.CYAN + url + Fore.RESET)
     save(urls, siteUrl)
