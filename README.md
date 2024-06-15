@@ -1,4 +1,5 @@
-![Capturar](https://github.com/helguyuser1/Parameter-Scaler/assets/129449907/b4f4cdbe-f7d1-4dda-aeef-d66a4d3f1e9f)
+
+![enc](https://github.com/helguyuser1/Parameter-Scaler/assets/129449907/eb01bf77-4845-4b5e-a8f8-c0a9c9f83846)
 
 What does the script do?
 
