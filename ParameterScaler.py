@@ -46,7 +46,7 @@ def find(siteUrl):
         print(f"[X] Error: {str(e)}")
     return foundUrls
 
-def save(urls, siteUrl):
+def save(urls, siteUrl, onlyParams=False):
     try:
         fileName = siteUrl.replace('https://', '').replace('http://', '')  
         if fileName.endswith('/'):
@@ -61,10 +61,11 @@ def save(urls, siteUrl):
                     break
                 number += 1
             fileName = fileNameWithNumber
-        
+
         with open(fileName, 'w') as file:
             for url in urls:
-                file.write(url + '\n')
+                if not onlyParams or params(url):
+                    file.write(url + '\n')
         print(f"\n[*] URLs saved in > '{fileName}'.")
     except Exception as e:
         print(f"[X] Error while saving URLs: {str(e)}")
@@ -89,11 +90,11 @@ if option == "1":
     siteUrl = input(Fore.RESET+"[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
     urls = find(siteUrl)
     urls = rmvd(urls)
+    urls_with_params = [url for url in urls if params(url)]
     print(Fore.YELLOW+"\n[+] URLs found with parameters:\n", Fore.RESET)
-    for url in urls:
-        if params(url):
-            print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
-    save(urls, siteUrl)
+    for url in urls_with_params:
+        print(f"[{Fore.YELLOW}PARAMETER{Fore.RESET}]: "+Fore.GREEN + url + Fore.RESET)
+    save(urls_with_params, siteUrl)
 
 elif option == "2":
     siteUrl = input(Fore.RESET+"[-] Domain (ex: hackerone.com)\n:> " + Fore.CYAN)
